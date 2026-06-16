@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="גיל ויינשטיין - מטפל במגע ותנועה | עיסויים, טיפול מנואלי ושיקום אקטיבי">
+  <title>גיל ויינשטיין | מטפל במגע ותנועה</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Heebo:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00d696',
+            secondary: '#a30089',
+            accent1: '#e51f54',
+            accent2: '#6fc4cc',
+            accent3: '#c2e151',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --c1: #00d696;
+      --c2: #a30089;
+      --c3: #e51f54;
+      --c4: #6fc4cc;
+      --c5: #c2e151;
+      --bg: #080808;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    [dir="rtl"] { font-family: 'Heebo', sans-serif; }
+    [dir="ltr"] { font-family: 'Montserrat', sans-serif; }
+
+    /* ── Animated gradient mesh ── */
+    .mesh-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 15% 40%, rgba(0,214,150,.13) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 45% at 85% 15%, rgba(163,0,137,.10) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 55% 85%, rgba(229,31,84,.09) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 35% at 70% 55%, rgba(111,196,204,.07) 0%, transparent 70%),
+        #080808;
+      animation: meshPulse 10s ease-in-out infinite alternate;
+    }
+    @keyframes meshPulse {
+      0%   { opacity: 1; }
+      100% { opacity: .85; }
+    }
+
+    /* ── Floating orbs ── */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); pointer-events: none;
+      animation: orbDrift 8s ease-in-out infinite alternate;
+    }
+    .orb-a { width: 500px; height: 500px; background: var(--c1); opacity:.18; top:-180px; right:-120px; animation-delay:0s; }
+    .orb-b { width: 350px; height: 350px; background: var(--c2); opacity:.14; bottom:15%; left:-80px; animation-delay:-3s; }
+    .orb-c { width: 280px; height: 280px; background: var(--c3); opacity:.12; top:45%; right:18%; animation-delay:-5s; }
+    @keyframes orbDrift {
+      0%   { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(25px,-25px) scale(1.07); }
+      100% { transform: translate(-15px,20px) scale(.94); }
+    }
+
+    /* ── Glass ── */
+    .glass     { background: rgba(255,255,255,.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.10); }
+    .glass-sm  { background: rgba(255,255,255,.04); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.08); }
+    .glass-card { background: rgba(255,255,255,.04); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.08); transition: all .3s ease; }
+    .glass-card:hover { background: rgba(255,255,255,.08); transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,214,150,.10); border-color: rgba(0,214,150,.28); }
+
+    /* ── Gradient text ── */
+    .gt { background: linear-gradient(135deg, var(--c1) 0%, var(--c4) 50%, var(--c2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gt2 { background: linear-gradient(135deg, var(--c2), var(--c3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── Gradient bar ── */
+    .gbar { height: 2px; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5)); border-radius: 2px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 30px; border-radius: 50px; font-weight: 600;
+      font-size: .95rem; cursor: pointer; transition: all .25s ease;
+      text-decoration: none; border: none; gap: 8px;
+    }
+    .btn-main  { background: linear-gradient(135deg, var(--c1), var(--c4)); color: #000; }
+    .btn-main:hover  { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,214,150,.38); }
+    .btn-ghost { border: 1.5px solid var(--c1); color: var(--c1); background: transparent; }
+    .btn-ghost:hover { background: rgba(0,214,150,.10); transform: translateY(-2px); }
+
+    /* ── Tag ── */
+    .tag { display: inline-block; padding: 5px 14px; border-radius: 50px; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,214,150,.12); color: var(--c1); border: 1px solid rgba(0,214,150,.28); }
+
+    /* ── Scroll reveal ── */
+    .rev  { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .revL { opacity: 0; transform: translateX(-28px); transition: opacity .65s ease, transform .65s ease; }
+    .revR { opacity: 0; transform: translateX(28px);  transition: opacity .65s ease, transform .65s ease; }
+    .rev.on, .revL.on, .revR.on { opacity: 1; transform: translate(0); }
+
+    /* ── Navbar ── */
+    #nav {
+      position: fixed; top: 14px; left: 14px; right: 14px;
+      z-index: 100; border-radius: 18px;
+      transition: background .3s ease;
+    }
+
+    /* ── Stat number ── */
+    .sn { font-family: 'Cormorant', serif; font-size: 3.2rem; font-weight: 700; background: linear-gradient(135deg, var(--c1), var(--c4)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+
+    /* ── Form ── */
+    .finput {
+      width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px; padding: 13px 16px; color: #f0f0f0;
+      font-family: inherit; font-size: 1rem; outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .finput:focus { border-color: var(--c1); box-shadow: 0 0 0 3px rgba(0,214,150,.10); }
+    .finput::placeholder { color: rgba(255,255,255,.32); }
+
+    /* ── Icon circle ── */
+    .ic { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ── Lang toggle ── */
+    .ltoggle { display: flex; gap: 2px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); border-radius: 50px; padding: 3px; }
+    .lbtn { padding: 5px 13px; border-radius: 50px; font-size: .78rem; font-weight: 600; cursor: pointer; transition: all .2s ease; border: none; background: transparent; color: rgba(255,255,255,.45); }
+    .lbtn.on { background: var(--c1); color: #000; }
+
+    /* ── Mobile menu ── */
+    #mmenu { display: none; }
+    #mmenu.open { display: block; }
+
+    /* ── Section pad ── */
+    .sp { padding: 90px 0; }
+    @media (max-width: 768px) { .sp { padding: 64px 0; } .sn { font-size: 2.4rem; } }
+
+    /* ── Service card accent colors ── */
+    .sc1:hover { border-color: rgba(0,214,150,.3)  !important; box-shadow: 0 24px 64px rgba(0,214,150,.09)  !important; }
+    .sc2:hover { border-color: rgba(163,0,137,.3)  !important; box-shadow: 0 24px 64px rgba(163,0,137,.09)  !important; }
+    .sc3:hover { border-color: rgba(111,196,204,.3) !important; box-shadow: 0 24px 64px rgba(111,196,204,.09) !important; }
+
+    /* ── Testimonial stars ── */
+    .stars { color: var(--c5); }
+
+    /* ── Scroll indicator ── */
+    .scroll-hint { animation: hint 2.2s ease-in-out infinite; }
+    @keyframes hint { 0%,100%{transform:translateY(0)} 50%{transform:translateY(9px)} }
+
+    /* ── CTA glow banner ── */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(0,214,150,.12), rgba(163,0,137,.12), rgba(111,196,204,.12));
+      border: 1px solid rgba(255,255,255,.09);
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,214,150,.18), transparent 68%);
+    }
+
+    /* ── Process connector ── */
+    .pconn { flex: 1; height: 1px; background: linear-gradient(90deg, var(--c1), var(--c2)); opacity: .35; margin-top: -44px; }
+    @media (max-width: 767px) { .pconn { display: none; } }
+
+    /* ── Heading font ── */
+    .hf { font-family: 'Cormorant', serif; }
+
+    /* ── Dot ── */
+    .dot6 { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; margin-top: 7px; }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, .orb, .scroll-hint { animation: none !important; transition-duration: .01ms !important; }
+      .rev, .revL, .revR { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Gradient mesh background -->
+<div class="mesh-bg"></div>
+
+<!-- ════════════════════════════════════════
+     NAVBAR
+═════════════════════════════════════════ -->
+<nav id="nav" class="glass">
+  <div class="flex items-center justify-between px-5 py-4">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3 cursor-default select-none">
+      <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#00d696,#6fc4cc)">
+        <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5">
+          <circle cx="12" cy="12" r="4" fill="#000"/>
+          <path d="M12 3v4M12 17v4M3 12h4M17 12h4" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="text-sm font-bold leading-tight" id="n-name">גיל ויינשטיין</div>
+        <div class="text-xs opacity-40" id="n-sub">מטפל במגע ותנועה</div>
+      </div>
+    </div>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-sm opacity-60 hover:opacity-100 transition-opacity cursor-pointer" id="n-srv">טיפולים</a>
+      <a href="#about"    class="text-sm opacity-60 hover:opacity-100 transition-opacity cursor-pointer" id="n-abt">אודות</a>
+      <a href="#process"  class="text-sm opacity-60 hover:opacity-100 transition-opacity cursor-pointer" id="n-prc">תהליך</a>
+      <a href="#contact"  class="text-sm opacity-60 hover:opacity-100 transition-opacity cursor-pointer" id="n-cnt">צור קשר</a>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-3">
+      <div class="ltoggle">
+        <button class="lbtn on" id="lb-he" onclick="setLang('he')">עב</button>
+        <button class="lbtn"    id="lb-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#contact" class="btn btn-main hidden md:inline-flex text-sm py-2 px-5" id="n-cta">קביעת תור</a>
+      <button onclick="toggleMenu()" class="md:hidden p-2 cursor-pointer" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mmenu" class="glass-sm mx-3 mb-3 rounded-2xl px-5 py-4">
+    <div class="flex flex-col gap-4">
+      <a href="#services" onclick="toggleMenu()" class="text-sm py-2 border-b border-white/10 opacity-75" id="m-srv">טיפולים</a>
+      <a href="#about"    onclick="toggleMenu()" class="text-sm py-2 border-b border-white/10 opacity-75" id="m-abt">אודות</a>
+      <a href="#process"  onclick="toggleMenu()" class="text-sm py-2 border-b border-white/10 opacity-75" id="m-prc">תהליך</a>
+      <a href="#contact"  onclick="toggleMenu()" class="text-sm py-2 border-b border-white/10 opacity-75" id="m-cnt">צור קשר</a>
+      <a href="#contact"  onclick="toggleMenu()" class="btn btn-main text-sm text-center" id="m-cta">קביעת תור</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     HERO
+═════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+
+  <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+
+    <div class="rev mb-6">
+      <span class="tag" id="h-tag">קליניקה לטיפול במגע ותנועה</span>
+    </div>
+
+    <h1 class="rev hf font-bold leading-tight mb-5" style="font-size:clamp(3rem,10vw,6.5rem)">
+      <span class="gt" id="h-name">גיל ויינשטיין</span>
+    </h1>
+
+    <p class="rev text-xl md:text-2xl opacity-55 font-light mb-4" id="h-role">מטפל במגע ותנועה</p>
+
+    <div class="rev gbar w-20 mx-auto mb-8"></div>
+
+    <p class="rev text-base md:text-lg opacity-65 max-w-2xl mx-auto leading-relaxed mb-10" id="h-desc">
+      טיפולים מקצועיים המשלבים עיסוי, טיפול מנואלי ושיקום אקטיבי לשיפור האיכות, הגמישות ורווחת הגוף
+    </p>
+
+    <div class="rev flex flex-wrap justify-center gap-4 mb-16">
+      <a href="#contact" class="btn btn-main" id="h-cta1">קביעת תור עכשיו</a>
+      <a href="#services" class="btn btn-ghost" id="h-cta2">גלה את הטיפולים</a>
+    </div>
+
+    <!-- Hero stats -->
+    <div class="rev grid grid-cols-3 gap-6 max-w-md mx-auto">
+      <div>
+        <div class="sn">500+</div>
+        <div class="text-xs opacity-45 mt-1" id="h-s1">לקוחות</div>
+      </div>
+      <div>
+        <div class="sn">8+</div>
+        <div class="text-xs opacity-45 mt-1" id="h-s2">שנות ניסיון</div>
+      </div>
+      <div>
+        <div class="sn">97%</div>
+        <div class="text-xs opacity-45 mt-1" id="h-s3">שביעות רצון</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-hint opacity-30">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6">
+      <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICES
+═════════════════════════════════════════ -->
+<section id="services" class="sp relative z-10 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16">
+      <span class="tag rev inline-block mb-5" id="srv-tag">הטיפולים שלי</span>
+      <h2 class="rev hf font-bold text-4xl md:text-5xl mb-4">
+        טיפול <span class="gt" id="srv-h">מקצועי ואישי</span>
+      </h2>
+      <p class="rev opacity-55 max-w-lg mx-auto" id="srv-sub">כל טיפול מותאם אישית לצרכים ולמטרות הייחודיות שלך</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Card 1 – Massage -->
+      <div class="glass-card sc1 rounded-3xl p-8 rev cursor-pointer">
+        <div class="ic mb-6" style="background:rgba(0,214,150,.14)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00d696" stroke-width="1.5" class="w-7 h-7" style="filter:drop-shadow(0 0 8px rgba(0,214,150,.5))">
+            <path d="M7 17s2-6 5-6 5 3 5 3" stroke-linecap="round"/>
+            <path d="M3 12C3 7.03 7.03 3 12 3s9 4.03 9 9-4.03 9-9 9-9-4.03-9-9z"/>
+            <path d="M12 9v3l2 2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="w-2 h-2 rounded-full mb-4" style="background:#00d696"></div>
+        <h3 class="hf text-xl font-bold mb-3" id="s1-h">עיסוי טיפולי</h3>
+        <p class="text-sm opacity-60 leading-relaxed mb-6" id="s1-d">עיסוי עמוק, מרגיע וספורטיבי המיועד להקלה על כאבים, שחרור מתחים ושיפור זרימת הדם.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#00d696;margin-top:0"></span><span id="s1-l1">עיסוי רקמות עמוקות</span></li>
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#00d696;margin-top:0"></span><span id="s1-l2">עיסוי ספורטיבי</span></li>
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#00d696;margin-top:0"></span><span id="s1-l3">עיסוי שוודי מרגיע</span></li>
+        </ul>
+      </div>
+
+      <!-- Card 2 – Manual Therapy -->
+      <div class="glass-card sc2 rounded-3xl p-8 rev cursor-pointer" style="transition-delay:.12s">
+        <div class="ic mb-6" style="background:rgba(163,0,137,.14)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#a30089" stroke-width="1.5" class="w-7 h-7" style="filter:drop-shadow(0 0 8px rgba(163,0,137,.5))">
+            <path d="M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="w-2 h-2 rounded-full mb-4" style="background:#a30089"></div>
+        <h3 class="hf text-xl font-bold mb-3" id="s2-h">טיפול מנואלי</h3>
+        <p class="text-sm opacity-60 leading-relaxed mb-6" id="s2-d">טיפול ידני מקצועי לשחרור חסימות, שיפור ניידות המפרקים ושחרור הרקמות הרכות.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#a30089;margin-top:0"></span><span id="s2-l1">אוסטאופתיה</span></li>
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#a30089;margin-top:0"></span><span id="s2-l2">שחרור מיופשיאלי</span></li>
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#a30089;margin-top:0"></span><span id="s2-l3">גיוס מפרקים</span></li>
+        </ul>
+      </div>
+
+      <!-- Card 3 – Active Rehab -->
+      <div class="glass-card sc3 rounded-3xl p-8 rev cursor-pointer" style="transition-delay:.24s">
+        <div class="ic mb-6" style="background:rgba(111,196,204,.14)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6fc4cc" stroke-width="1.5" class="w-7 h-7" style="filter:drop-shadow(0 0 8px rgba(111,196,204,.5))">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="w-2 h-2 rounded-full mb-4" style="background:#6fc4cc"></div>
+        <h3 class="hf text-xl font-bold mb-3" id="s3-h">שיקום אקטיבי</h3>
+        <p class="text-sm opacity-60 leading-relaxed mb-6" id="s3-d">תוכנית שיקום מותאמת אישית הכוללת תרגול מכוון, חיזוק ותנועה לחזרה לתפקוד מלא.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#6fc4cc;margin-top:0"></span><span id="s3-l1">שיקום פוסט-ניתוחי</span></li>
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#6fc4cc;margin-top:0"></span><span id="s3-l2">טיפול בכאבי גב</span></li>
+          <li class="flex items-center gap-2 text-xs opacity-65"><span class="dot6" style="background:#6fc4cc;margin-top:0"></span><span id="s3-l3">תיקון יציבה ותנועה</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     STATS BAND
+═════════════════════════════════════════ -->
+<section class="relative z-10 px-6 py-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="glass rounded-3xl px-8 py-10 md:px-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="rev"><div class="sn">500+</div><div class="text-sm opacity-45 mt-2" id="st1">לקוחות מרוצים</div></div>
+        <div class="rev" style="transition-delay:.1s"><div class="sn">8+</div><div class="text-sm opacity-45 mt-2" id="st2">שנות ניסיון</div></div>
+        <div class="rev" style="transition-delay:.2s"><div class="sn">97%</div><div class="text-sm opacity-45 mt-2" id="st3">שביעות רצון</div></div>
+        <div class="rev" style="transition-delay:.3s"><div class="sn">3</div><div class="text-sm opacity-45 mt-2" id="st4">התמחויות</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABOUT
+═════════════════════════════════════════ -->
+<section id="about" class="sp relative z-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+
+      <!-- Image -->
+      <div class="revL order-2 md:order-1">
+        <div class="relative">
+          <div class="glass-card rounded-3xl overflow-hidden flex items-center justify-center" style="aspect-ratio:4/5">
+            <!-- Placeholder art -->
+            <div class="flex flex-col items-center gap-4 opacity-20 select-none pointer-events-none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" class="w-24 h-24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span class="text-sm" id="img-ph">תמונת המטפל</span>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div class="glass absolute -bottom-5 -start-5 hidden md:flex items-center gap-3 rounded-2xl px-4 py-3" style="background:rgba(0,214,150,.10)">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:rgba(0,214,150,.2)">
+              <svg viewBox="0 0 24 24" fill="#00d696" class="w-5 h-5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-bold" style="color:#00d696" id="ab-bg1">מוסמך ומנוסה</div>
+              <div class="text-xs opacity-50" id="ab-bg2">8+ שנות ניסיון</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="revR order-1 md:order-2">
+        <span class="tag inline-block mb-5" id="ab-tag">אודותי</span>
+        <h2 class="hf font-bold text-4xl md:text-5xl mb-4 leading-tight">
+          <span class="gt" id="ab-h1">טיפול מקצועי</span><br><span id="ab-h2">עם לב אנושי</span>
+        </h2>
+        <div class="gbar w-16 mb-6"></div>
+        <p class="opacity-65 leading-relaxed mb-4" id="ab-p1">
+          שמי גיל ויינשטיין, מטפל מוסמך במגע ותנועה עם ניסיון של מעל 8 שנים בתחום. אני מאמין בגישה הוליסטית המחברת בין הגוף, המוח והנשמה.
+        </p>
+        <p class="opacity-65 leading-relaxed mb-8" id="ab-p2">
+          הגישה שלי משלבת טכניקות מסורתיות עם שיטות מודרניות כדי לספק לך את הטיפול המדויק ביותר לצרכים שלך.
+        </p>
+        <div class="grid grid-cols-2 gap-3 mb-8">
+          <div class="flex items-start gap-2"><span class="dot6" style="background:#00d696"></span><span class="text-sm opacity-65" id="ab-q1">מוסמך בפיזיותרפיה</span></div>
+          <div class="flex items-start gap-2"><span class="dot6" style="background:#a30089"></span><span class="text-sm opacity-65" id="ab-q2">מוסמך בטיפול מנואלי</span></div>
+          <div class="flex items-start gap-2"><span class="dot6" style="background:#e51f54"></span><span class="text-sm opacity-65" id="ab-q3">שיקום ספורטיבי</span></div>
+          <div class="flex items-start gap-2"><span class="dot6" style="background:#6fc4cc"></span><span class="text-sm opacity-65" id="ab-q4">גישה הוליסטית</span></div>
+        </div>
+        <a href="#contact" class="btn btn-main" id="ab-cta">קביעת פגישת היכרות</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PROCESS
+═════════════════════════════════════════ -->
+<section id="process" class="sp relative z-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="tag rev inline-block mb-5" id="pr-tag">איך זה עובד</span>
+      <h2 class="rev hf font-bold text-4xl md:text-5xl">
+        שלושה <span class="gt" id="pr-h">צעדים פשוטים</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+
+      <div class="glass-card rounded-3xl p-8 text-center rev">
+        <div class="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style="background:rgba(0,214,150,.14);border:1px solid rgba(0,214,150,.3)">
+          <span class="hf text-2xl font-bold" style="color:#00d696">01</span>
+        </div>
+        <h3 class="hf text-lg font-bold mb-3" id="pr1-h">קביעת תור</h3>
+        <p class="text-sm opacity-60 leading-relaxed" id="pr1-d">צור איתי קשר ונקבע יחד את המועד הנוח ביותר עבורך</p>
+      </div>
+
+      <div class="glass-card rounded-3xl p-8 text-center rev" style="transition-delay:.14s">
+        <div class="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style="background:rgba(163,0,137,.14);border:1px solid rgba(163,0,137,.3)">
+          <span class="hf text-2xl font-bold" style="color:#a30089">02</span>
+        </div>
+        <h3 class="hf text-lg font-bold mb-3" id="pr2-h">הערכה אישית</h3>
+        <p class="text-sm opacity-60 leading-relaxed" id="pr2-d">נבצע הערכה מקיפה של הצרכים שלך ונתאים תוכנית טיפול אישית</p>
+      </div>
+
+      <div class="glass-card rounded-3xl p-8 text-center rev" style="transition-delay:.28s">
+        <div class="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style="background:rgba(111,196,204,.14);border:1px solid rgba(111,196,204,.3)">
+          <span class="hf text-2xl font-bold" style="color:#6fc4cc">03</span>
+        </div>
+        <h3 class="hf text-lg font-bold mb-3" id="pr3-h">טיפול ושיקום</h3>
+        <p class="text-sm opacity-60 leading-relaxed" id="pr3-d">נתחיל בטיפולים ותחוש את ההשפעה כבר מהפגישה הראשונה</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     TESTIMONIALS
+═════════════════════════════════════════ -->
+<section id="testimonials" class="sp relative z-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="tag rev inline-block mb-5" id="tm-tag">לקוחות מרוצים</span>
+      <h2 class="rev hf font-bold text-4xl md:text-5xl">
+        מה אומרים <span class="gt" id="tm-h">עלינו</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- T1 -->
+      <div class="glass-card rounded-3xl p-7 rev">
+        <div class="flex gap-1 mb-5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="text-sm opacity-65 leading-relaxed mb-6" id="t1-tx">"טיפול מדהים! גיל הצליח לפתור כאבי גב שסבלתי מהם שנים. מקצועי, נעים ואמין. ממליצה בחום!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-black" style="background:linear-gradient(135deg,#00d696,#6fc4cc)">ש</div>
+          <div><div class="text-sm font-semibold" id="t1-nm">שרה לוי</div><div class="text-xs opacity-45" id="t1-rl">לקוחה קבועה</div></div>
+        </div>
+      </div>
+
+      <!-- T2 -->
+      <div class="glass-card rounded-3xl p-7 rev" style="transition-delay:.13s">
+        <div class="flex gap-1 mb-5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="text-sm opacity-65 leading-relaxed mb-6" id="t2-tx">"לאחר הניתוח בברך שלי, גיל עזר לי לחזור לפעילות ספורטיבית מלאה. הטיפולים שלו פשוט מדהימים."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white" style="background:linear-gradient(135deg,#a30089,#e51f54)">ד</div>
+          <div><div class="text-sm font-semibold" id="t2-nm">דוד כהן</div><div class="text-xs opacity-45" id="t2-rl">ספורטאי חובב</div></div>
+        </div>
+      </div>
+
+      <!-- T3 -->
+      <div class="glass-card rounded-3xl p-7 rev" style="transition-delay:.26s">
+        <div class="flex gap-1 mb-5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="text-sm opacity-65 leading-relaxed mb-6" id="t3-tx">"העיסויים של גיל הם חוויה שלמה — גוף ונפש. כל פגישה מרגישה כמו טיפול עמוק. ממליצה לכולם!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-black" style="background:linear-gradient(135deg,#6fc4cc,#c2e151)">מ</div>
+          <div><div class="text-sm font-semibold" id="t3-nm">מיכל אברהם</div><div class="text-xs opacity-45" id="t3-rl">מגיעה כל שבועיים</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CTA BANNER
+═════════════════════════════════════════ -->
+<section class="relative z-10 px-6 pb-16">
+  <div class="max-w-6xl mx-auto">
+    <div class="cta-banner rev rounded-3xl p-12 md:p-20 text-center">
+      <div class="relative z-10">
+        <h2 class="hf font-bold text-3xl md:text-5xl mb-4">
+          <span id="ctab-h1">מוכן להתחיל את </span><span class="gt" id="ctab-h2">המסע שלך?</span>
+        </h2>
+        <p class="opacity-60 mb-8 max-w-md mx-auto" id="ctab-sub">קבע תור עכשיו ותחל את הדרך לגוף בריא ומאוזן</p>
+        <a href="#contact" class="btn btn-main px-10 py-4 text-base" id="ctab-btn">קביעת תור עכשיו</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CONTACT
+═════════════════════════════════════════ -->
+<section id="contact" class="sp relative z-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="tag rev inline-block mb-5" id="ct-tag">צור קשר</span>
+      <h2 class="rev hf font-bold text-4xl md:text-5xl">
+        נדבר <span class="gt" id="ct-h">ביחד</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+      <!-- Info -->
+      <div class="revL space-y-6">
+
+        <div class="flex items-center gap-4">
+          <div class="ic" style="background:rgba(0,214,150,.14)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00d696" stroke-width="1.5" class="w-5 h-5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs opacity-45 mb-1" id="ci-ph-l">טלפון</div>
+            <a href="tel:+972501234567" class="font-medium cursor-pointer" style="color:#00d696" id="ci-ph">050-123-4567</a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="ic" style="background:rgba(163,0,137,.14)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#a30089" stroke-width="1.5" class="w-5 h-5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs opacity-45 mb-1" id="ci-em-l">אימייל</div>
+            <a href="mailto:gil@example.com" class="font-medium cursor-pointer" style="color:#a30089" id="ci-em">gil@example.com</a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="ic" style="background:rgba(111,196,204,.14)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#6fc4cc" stroke-width="1.5" class="w-5 h-5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs opacity-45 mb-1" id="ci-lc-l">מיקום</div>
+            <span class="font-medium opacity-80" id="ci-lc">תל אביב, ישראל</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="ic" style="background:rgba(194,225,81,.14)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c2e151" stroke-width="1.5" class="w-5 h-5">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs opacity-45 mb-1" id="ci-hr-l">שעות פעילות</div>
+            <span class="font-medium opacity-80 text-sm" id="ci-hr">א׳–ה׳: 8:00–20:00 | ו׳: 8:00–14:00</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/972501234567" target="_blank" rel="noopener" class="btn btn-ghost inline-flex items-center gap-2 mt-4 cursor-pointer" id="ci-wa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          <span id="ci-wa-t">שלח הודעה בווטסאפ</span>
+        </a>
+      </div>
+
+      <!-- Form -->
+      <div class="revR">
+        <form id="contact-form" class="glass-card rounded-3xl p-8 space-y-5" onsubmit="submitForm(event)">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs opacity-50 mb-2 block" id="fl-nm">שם מלא</label>
+              <input type="text" id="fi-nm" class="finput" placeholder="ישראל ישראלי" required>
+            </div>
+            <div>
+              <label class="text-xs opacity-50 mb-2 block" id="fl-ph">טלפון</label>
+              <input type="tel" id="fi-ph" class="finput" placeholder="050-000-0000" required>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs opacity-50 mb-2 block" id="fl-sv">סוג הטיפול</label>
+            <select id="fi-sv" class="finput cursor-pointer">
+              <option value="" style="background:#0f0f0f" id="fo-sel">בחר טיפול...</option>
+              <option value="massage" style="background:#0f0f0f" id="fo-ms">עיסוי טיפולי</option>
+              <option value="manual"  style="background:#0f0f0f" id="fo-mn">טיפול מנואלי</option>
+              <option value="rehab"   style="background:#0f0f0f" id="fo-rh">שיקום אקטיבי</option>
+              <option value="consult" style="background:#0f0f0f" id="fo-cs">ייעוץ ראשוני</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs opacity-50 mb-2 block" id="fl-mg">הודעה</label>
+            <textarea id="fi-mg" class="finput" rows="4" placeholder="ספר לי על הצרכים שלך..."></textarea>
+          </div>
+          <button type="submit" id="form-btn" class="btn btn-main w-full py-4 cursor-pointer">
+            <span id="form-btn-t">שלח בקשה לקביעת תור</span>
+          </button>
+          <p id="form-ok" class="text-center text-sm hidden" style="color:#00d696">✓ ההודעה נשלחה! נחזור אליך בהקדם.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+═════════════════════════════════════════ -->
+<footer class="relative z-10 px-6 pb-10 pt-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <div class="gbar mb-8"></div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-5">
+
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#00d696,#6fc4cc)">
+          <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4">
+            <circle cx="12" cy="12" r="3" fill="#000"/>
+            <path d="M12 3v4M12 17v4M3 12h4M17 12h4" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="font-semibold" id="ft-nm">גיל ויינשטיין</span>
+      </div>
+
+      <div class="text-sm opacity-35" id="ft-cp">&copy; 2025 גיל ויינשטיין. כל הזכויות שמורות.</div>
+
+      <div class="flex gap-3">
+        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110" style="background:rgba(255,255,255,.07)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/972501234567" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110" style="background:rgba(255,255,255,.07)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110" style="background:rgba(255,255,255,.07)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+═════════════════════════════════════════ -->
+<script>
+// ── Translations ──────────────────────────────────────────────────────────────
+const T = {
+  he: {
+    dir:'rtl', lang:'he',
+    'n-name':'גיל ויינשטיין','n-sub':'מטפל במגע ותנועה',
+    'n-srv':'טיפולים','n-abt':'אודות','n-prc':'תהליך','n-cnt':'צור קשר','n-cta':'קביעת תור',
+    'm-srv':'טיפולים','m-abt':'אודות','m-prc':'תהליך','m-cnt':'צור קשר','m-cta':'קביעת תור',
+    'h-tag':'קליניקה לטיפול במגע ותנועה',
+    'h-name':'<span class="gt">גיל ויינשטיין</span>',
+    'h-role':'מטפל במגע ותנועה',
+    'h-desc':'טיפולים מקצועיים המשלבים עיסוי, טיפול מנואלי ושיקום אקטיבי לשיפור האיכות, הגמישות ורווחת הגוף',
+    'h-cta1':'קביעת תור עכשיו','h-cta2':'גלה את הטיפולים',
+    'h-s1':'לקוחות','h-s2':'שנות ניסיון','h-s3':'שביעות רצון',
+    'srv-tag':'הטיפולים שלי','srv-h':'מקצועי ואישי','srv-sub':'כל טיפול מותאם אישית לצרכים ולמטרות הייחודיות שלך',
+    's1-h':'עיסוי טיפולי','s1-d':'עיסוי עמוק, מרגיע וספורטיבי המיועד להקלה על כאבים, שחרור מתחים ושיפור זרימת הדם.',
+    's1-l1':'עיסוי רקמות עמוקות','s1-l2':'עיסוי ספורטיבי','s1-l3':'עיסוי שוודי מרגיע',
+    's2-h':'טיפול מנואלי','s2-d':'טיפול ידני מקצועי לשחרור חסימות, שיפור ניידות המפרקים ושחרור הרקמות הרכות.',
+    's2-l1':'אוסטאופתיה','s2-l2':'שחרור מיופשיאלי','s2-l3':'גיוס מפרקים',
+    's3-h':'שיקום אקטיבי','s3-d':'תוכנית שיקום מותאמת אישית הכוללת תרגול מכוון, חיזוק ותנועה לחזרה לתפקוד מלא.',
+    's3-l1':'שיקום פוסט-ניתוחי','s3-l2':'טיפול בכאבי גב','s3-l3':'תיקון יציבה ותנועה',
+    'st1':'לקוחות מרוצים','st2':'שנות ניסיון','st3':'שביעות רצון','st4':'התמחויות',
+    'img-ph':'תמונת המטפל','ab-bg1':'מוסמך ומנוסה','ab-bg2':'8+ שנות ניסיון',
+    'ab-tag':'אודותי','ab-h1':'טיפול מקצועי','ab-h2':'עם לב אנושי',
+    'ab-p1':'שמי גיל ויינשטיין, מטפל מוסמך במגע ותנועה עם ניסיון של מעל 8 שנים בתחום. אני מאמין בגישה הוליסטית המחברת בין הגוף, המוח והנשמה.',
+    'ab-p2':'הגישה שלי משלבת טכניקות מסורתיות עם שיטות מודרניות כדי לספק לך את הטיפול המדויק ביותר לצרכים שלך.',
+    'ab-q1':'מוסמך בפיזיותרפיה','ab-q2':'מוסמך בטיפול מנואלי','ab-q3':'שיקום ספורטיבי','ab-q4':'גישה הוליסטית',
+    'ab-cta':'קביעת פגישת היכרות',
+    'pr-tag':'איך זה עובד','pr-h':'צעדים פשוטים',
+    'pr1-h':'קביעת תור','pr1-d':'צור איתי קשר ונקבע יחד את המועד הנוח ביותר עבורך',
+    'pr2-h':'הערכה אישית','pr2-d':'נבצע הערכה מקיפה של הצרכים שלך ונתאים תוכנית טיפול אישית',
+    'pr3-h':'טיפול ושיקום','pr3-d':'נתחיל בטיפולים ותחוש את ההשפעה כבר מהפגישה הראשונה',
+    'tm-tag':'לקוחות מרוצים','tm-h':'עלינו',
+    't1-tx':'"טיפול מדהים! גיל הצליח לפתור כאבי גב שסבלתי מהם שנים. מקצועי, נעים ואמין. ממליצה בחום!"',
+    't1-nm':'שרה לוי','t1-rl':'לקוחה קבועה',
+    't2-tx':'"לאחר הניתוח בברך שלי, גיל עזר לי לחזור לפעילות ספורטיבית מלאה. הטיפולים שלו פשוט מדהימים."',
+    't2-nm':'דוד כהן','t2-rl':'ספורטאי חובב',
+    't3-tx':'"העיסויים של גיל הם חוויה שלמה — גוף ונפש. כל פגישה מרגישה כמו טיפול עמוק. ממליצה לכולם!"',
+    't3-nm':'מיכל אברהם','t3-rl':'מגיעה כל שבועיים',
+    'ctab-h1':'מוכן להתחיל את ','ctab-h2':'המסע שלך?',
+    'ctab-sub':'קבע תור עכשיו ותחל את הדרך לגוף בריא ומאוזן','ctab-btn':'קביעת תור עכשיו',
+    'ct-tag':'צור קשר','ct-h':'ביחד',
+    'ci-ph-l':'טלפון','ci-ph':'050-123-4567',
+    'ci-em-l':'אימייל','ci-em':'gil@example.com',
+    'ci-lc-l':'מיקום','ci-lc':'תל אביב, ישראל',
+    'ci-hr-l':'שעות פעילות','ci-hr':"א׳–ה׳: 8:00–20:00 | ו׳: 8:00–14:00",
+    'ci-wa-t':'שלח הודעה בווטסאפ',
+    'fl-nm':'שם מלא','fl-ph':'טלפון','fl-sv':'סוג הטיפול','fl-mg':'הודעה',
+    'fo-sel':'בחר טיפול...','fo-ms':'עיסוי טיפולי','fo-mn':'טיפול מנואלי','fo-rh':'שיקום אקטיבי','fo-cs':'ייעוץ ראשוני',
+    'form-btn-t':'שלח בקשה לקביעת תור',
+    'ft-nm':'גיל ויינשטיין','ft-cp':'© 2025 גיל ויינשטיין. כל הזכויות שמורות.',
+    '_ph-nm':'ישראל ישראלי','_ph-ph':'050-000-0000','_ph-mg':'ספר לי על הצרכים שלך...',
+    '_pr-h-prefix':'שלושה ',
+  },
+  en: {
+    dir:'ltr', lang:'en',
+    'n-name':'Gil Weinstein','n-sub':'Touch & Movement Therapist',
+    'n-srv':'Services','n-abt':'About','n-prc':'Process','n-cnt':'Contact','n-cta':'Book Now',
+    'm-srv':'Services','m-abt':'About','m-prc':'Process','m-cnt':'Contact','m-cta':'Book Now',
+    'h-tag':'Touch & Movement Therapy Clinic',
+    'h-name':'<span class="gt">Gil Weinstein</span>',
+    'h-role':'Touch & Movement Therapist',
+    'h-desc':'Professional treatments combining massage, manual therapy, and active rehabilitation to improve quality of life, flexibility, and body wellness.',
+    'h-cta1':'Book an Appointment','h-cta2':'Explore Treatments',
+    'h-s1':'Clients','h-s2':'Years Experience','h-s3':'Satisfaction',
+    'srv-tag':'My Treatments','srv-h':'Professional & Personal','srv-sub':'Every treatment is personally tailored to your unique needs and goals.',
+    's1-h':'Therapeutic Massage','s1-d':'Deep, relaxing and sports massage designed to relieve pain, release tension and improve blood circulation.',
+    's1-l1':'Deep Tissue Massage','s1-l2':'Sports Massage','s1-l3':'Swedish Relaxation',
+    's2-h':'Manual Therapy','s2-d':'Professional hands-on treatment to release blockages, improve joint mobility and release soft tissues.',
+    's2-l1':'Osteopathy','s2-l2':'Myofascial Release','s2-l3':'Joint Mobilization',
+    's3-h':'Active Rehabilitation','s3-d':'Personalized rehabilitation program including targeted exercise, strengthening and movement for full functional recovery.',
+    's3-l1':'Post-Surgical Rehab','s3-l2':'Back Pain Treatment','s3-l3':'Posture & Movement Correction',
+    'st1':'Happy Clients','st2':'Years Experience','st3':'Satisfaction','st4':'Specialties',
+    'img-ph':'Therapist Photo','ab-bg1':'Certified & Experienced','ab-bg2':'8+ Years Experience',
+    'ab-tag':'About Me','ab-h1':'Professional Care','ab-h2':'with a Human Heart',
+    'ab-p1':'My name is Gil Weinstein, a certified touch and movement therapist with over 8 years of experience. I believe in a holistic approach that connects body, mind, and soul.',
+    'ab-p2':'My approach combines traditional techniques with modern methods to provide you with the most precise treatment for your needs.',
+    'ab-q1':'Certified Physiotherapist','ab-q2':'Manual Therapy Certified','ab-q3':'Sports Rehabilitation','ab-q4':'Holistic Approach',
+    'ab-cta':'Book an Introductory Session',
+    'pr-tag':'How It Works','pr-h':'Simple Steps',
+    'pr1-h':'Book an Appointment','pr1-d':'Contact me and we\'ll schedule the most convenient time for you.',
+    'pr2-h':'Personal Assessment','pr2-d':'We\'ll conduct a full assessment and create a personalized treatment plan.',
+    'pr3-h':'Treatment & Recovery','pr3-d':'We begin treatments and you\'ll feel the impact from the very first session.',
+    'tm-tag':'Happy Clients','tm-h':'About Us',
+    't1-tx':'"Amazing treatment! Gil resolved back pain I\'d suffered from for years. Professional, pleasant and reliable."',
+    't1-nm':'Sarah Levy','t1-rl':'Regular Client',
+    't2-tx':'"After my knee surgery, Gil helped me return to full athletic activity. His treatments are simply amazing."',
+    't2-nm':'David Cohen','t2-rl':'Amateur Athlete',
+    't3-tx':'"Gil\'s massages are a complete experience — body and soul. Every session feels like a deep treatment. Highly recommend!"',
+    't3-nm':'Michal Abraham','t3-rl':'Bi-weekly Client',
+    'ctab-h1':'Ready to Start Your ','ctab-h2':'Journey?',
+    'ctab-sub':'Book now and begin the path to a healthy, balanced body.','ctab-btn':'Book an Appointment Now',
+    'ct-tag':'Contact','ct-h':'Together',
+    'ci-ph-l':'Phone','ci-ph':'050-123-4567',
+    'ci-em-l':'Email','ci-em':'gil@example.com',
+    'ci-lc-l':'Location','ci-lc':'Tel Aviv, Israel',
+    'ci-hr-l':'Working Hours','ci-hr':'Sun–Thu: 8:00–20:00 | Fri: 8:00–14:00',
+    'ci-wa-t':'Send WhatsApp Message',
+    'fl-nm':'Full Name','fl-ph':'Phone','fl-sv':'Treatment Type','fl-mg':'Message',
+    'fo-sel':'Select treatment...','fo-ms':'Therapeutic Massage','fo-mn':'Manual Therapy','fo-rh':'Active Rehabilitation','fo-cs':'Initial Consultation',
+    'form-btn-t':'Send Appointment Request',
+    'ft-nm':'Gil Weinstein','ft-cp':'© 2025 Gil Weinstein. All rights reserved.',
+    '_ph-nm':'John Doe','_ph-ph':'050-000-0000','_ph-mg':'Tell me about your needs...',
+    '_pr-h-prefix':'Three ',
+  }
+};
+
+let lang = 'he';
+
+function setLang(l) {
+  lang = l;
+  const t = T[l];
+  const root = document.getElementById('html-root');
+  root.setAttribute('dir', t.dir);
+  root.setAttribute('lang', t.lang);
+  root.style.fontFamily = l === 'he' ? "'Heebo', sans-serif" : "'Montserrat', sans-serif";
+
+  // Text nodes
+  const skip = new Set(['dir','lang','_ph-nm','_ph-ph','_ph-mg','_pr-h-prefix']);
+  Object.keys(t).forEach(id => {
+    if (skip.has(id)) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = t[id];
+  });
+
+  // Process heading prefix
+  const prh = document.getElementById('pr-h');
+  if (prh) {
+    const span = document.createElement('span');
+    span.className = 'gt';
+    span.id = 'pr-h';
+    prh.parentElement.innerHTML = t['_pr-h-prefix'] + '<span class="gt" id="pr-h">' + t['pr-h'] + '</span>';
+  }
+
+  // Placeholders
+  document.getElementById('fi-nm').placeholder = t['_ph-nm'];
+  document.getElementById('fi-ph').placeholder = t['_ph-ph'];
+  document.getElementById('fi-mg').placeholder = t['_ph-mg'];
+
+  // Lang buttons
+  document.getElementById('lb-he').classList.toggle('on', l === 'he');
+  document.getElementById('lb-en').classList.toggle('on', l === 'en');
+}
+
+// ── Mobile menu ───────────────────────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mmenu').classList.toggle('open');
+}
+
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.rev,.revL,.revR').forEach(el => io.observe(el));
+
+// ── Navbar opacity on scroll ──────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(8,8,8,.92)'
+    : 'rgba(255,255,255,.05)';
+}, { passive: true });
+
+// ── Smooth scroll ─────────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - 90, behavior: 'smooth' });
+  });
+});
+
+// ── Form submit ───────────────────────────────────────────────────────────────
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('form-btn');
+  btn.disabled = true;
+  btn.style.opacity = '.6';
+  setTimeout(() => {
+    document.getElementById('form-ok').classList.remove('hidden');
+    btn.style.display = 'none';
+    e.target.reset();
+  }, 900);
+}
+</script>
+</body>
+</html>
